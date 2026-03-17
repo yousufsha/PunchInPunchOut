@@ -29,27 +29,23 @@ public class AutoAttendanceSystem {
 			
 			driver.get("https://mytime.aka.corp.amazon.com/");
 			driver.navigate().refresh();
-			Robot R = new Robot();
 						
+//			click on timestamp tab
 			driver.findElement(By.xpath("//div[@title=\"My Timestamp\"]")).click();		
 			
 			Date date = new Date();
 			String Time = new SimpleDateFormat("HH:mm:ss aa").format(new Date());
 			
-			Thread.sleep(10000);
+			Thread.sleep(3000);
+//			Click record button
+			driver.findElement(By.xpath("//button[@class='Record']")).click();
 			
-			for(int i=1; i<=4; i++) {	
-				R.keyPress(KeyEvent.VK_TAB);
-				R.keyRelease(KeyEvent.VK_TAB);
-			}
-			
-//			R.keyPress(KeyEvent.VK_ENTER);
-//			R.keyRelease(KeyEvent.VK_ENTER);
-			
+//			to get user name
 			String user = driver.findElement(By.xpath("/html/body/krn-app/krn-navigator-container/ui-view/krn-header-container/krn-user-info/span/span")).getText();
 			
+//			Recorded time stamp
 			String record = driver.findElement(By.xpath("//span[contains(text(),'Last Timestamp:')]")).getText();
-//			System.out.println(record);
+
 			
 			if(record == "Last Timestamp:") {
 				String done = "Unable to Login, Please try again";
@@ -75,7 +71,6 @@ public class AutoAttendanceSystem {
 					        tray.add(trayIcon);
 					        trayIcon.displayMessage("Hello," + user , done, MessageType.INFO);
 						}
-						
 					else {
 						String done = "you have Logged in successfully";
 						
@@ -94,3 +89,6 @@ public class AutoAttendanceSystem {
 		}
 
 	}
+
+
+
